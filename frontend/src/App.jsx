@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
-import Hello from "./components/Hello";
 import axios from "axios";
+
 import "./App.css";
+
+import ProductCard from "./components/Products/ProductCard";
 
 const App = () => {
   const [data, setData] = useState([]);
+  const [category, setCategory] = useState("laptops");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,45 +23,47 @@ const App = () => {
     fetchData();
   }, []);
 
+  console.log(data)
   return (
-    <div className="flex h-screen justify-start items-dtart flex-col">
-      {data ? (
-        data.map((data, key) => {
-          return (
-            <div key={key}>
-              <h3>
-                {data.title} {"->"} {data.brand}
-              </h3>
-              <small>{data.category}</small>
-              <p>{data.description}</p>
-              <span>price: {data.price}$</span>
-              <div className="flex justify-center items-center gap-6 flex-wrap">
-                {data.images ? (
-                  data.images.map((item, key) => {
-                    return (
-                      <img
-                        key={key}
-                        src={item}
-                        alt=""
-                        width={180}
-                        height={120}
-                      />
-                    );
-                  })
-                ) : (
-                  <h3>Loading...</h3>
-                )}
-              </div>
-            </div>
-          );
-        })
-      ) : (
-        <h3>Loading...</h3>
-      )}
+    <div className="flex flex-wrap justify-start items-center p-16 h-screen justify-start items-dtart flex-row gap-16">
+      {data && !category
+        ? data.map((data, key) => {
+            if (key % 2 == 1)
+              return (
+                <ProductCard
+                  key={key}
+                  id={data.id}
+                  title={data.title}
+                  image={data.images[0]}
+                  description={data.description}
+                  price={data.price}
+                  rating={data.rating}
+                  stock={data.stock}
+                  brand={data.brand}
+                />
+              );
+          })
+        : data
+            .filter((item) => {
+              return item.category === category;
+            })
+            .map((data, key) => {
+                return (
+                  <ProductCard
+                    key={key}
+                    id={data.id}
+                    title={data.title}
+                    image={data.images[0]}
+                    description={data.description}
+                    price={data.price}
+                    rating={data.rating}
+                    stock={data.stock}
+                    brand={data.brand}
+                  />
+                );
+            })}
     </div>
   );
 };
 
-const container = document.getElementById("root");
-const root = createRoot(container);
-root.render(React.createElement(App));
+export default App;
