@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { createRoot } from "react-dom/client";
 import axios from "axios";
+
+//styles
 
 import "./App.css";
 
 import ProductCard from "./components/Products/ProductCard";
+import Navbar from "./components/Navbar";
+import SubNavbar from "./components/Navbar/SubNavbar";
 
 const App = () => {
   const [data, setData] = useState([]);
-  const [category, setCategory] = useState("laptops");
+  const [category, setCategory] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,12 +26,28 @@ const App = () => {
     fetchData();
   }, []);
 
-  console.log(data)
+  useEffect(() => {
+    // Set the meta description
+    const metaDescription = document.createElement("meta");
+    metaDescription.name = "description";
+    metaDescription.content = "Discover a wide range of high-quality products";
+
+    // Add the meta description to the document head
+    document.head.appendChild(metaDescription);
+
+    // Clean up by removing the added meta tag when the component unmounts
+    return () => {
+      document.head.removeChild(metaDescription);
+    };
+  }, []);
   return (
-    <div className="flex flex-wrap justify-start items-center p-16 h-screen justify-start items-dtart flex-row gap-16">
-      {data && !category
-        ? data.map((data, key) => {
-            if (key % 2 == 1)
+    <div>
+      <SubNavbar />
+      <Navbar />
+      <div className="flex flex-wrap justify-center items-center px-20 py-8 h-screen justify-start items-dtart flex-row gap-8">
+        {data && !category
+          ? data.map((data, key) => {
+              // if (key % 2 == 1)
               return (
                 <ProductCard
                   key={key}
@@ -42,12 +61,12 @@ const App = () => {
                   brand={data.brand}
                 />
               );
-          })
-        : data
-            .filter((item) => {
-              return item.category === category;
             })
-            .map((data, key) => {
+          : data
+              .filter((item) => {
+                return item.category === category;
+              })
+              .map((data, key) => {
                 return (
                   <ProductCard
                     key={key}
@@ -61,7 +80,8 @@ const App = () => {
                     brand={data.brand}
                   />
                 );
-            })}
+              })}
+      </div>
     </div>
   );
 };
