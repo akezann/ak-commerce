@@ -15,7 +15,7 @@ function index() {
 
   console.log(cart)
   return (
-    <div className="flex justify-between items-center bg-gray-100 p-4 px-20">
+    <div className="flex justify-between items-center bg-white p-4 px-20">
       <div className="flex justify-center items-center cursor-pointer">
         <LogoIcon />
         <p className="text-lg font-semibold">

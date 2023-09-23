@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
+import moment from "moment"
 //styles
 
 import "./App.css";
@@ -12,7 +12,7 @@ import SubNavbar from "./components/Navbar/SubNavbar";
 const App = () => {
   const [data, setData] = useState([]);
   const [category, setCategory] = useState("");
-
+  const [date, setDate] = useState(new Date())
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -31,7 +31,7 @@ const App = () => {
     const metaDescription = document.createElement("meta");
     metaDescription.name = "description";
     metaDescription.content = "Discover a wide range of high-quality products";
-
+    setDate(moment(date).format('dddd'))
     // Add the meta description to the document head
     document.head.appendChild(metaDescription);
 
@@ -44,7 +44,7 @@ const App = () => {
     <div>
       <SubNavbar />
       <Navbar />
-      <div className="flex flex-wrap justify-center items-center px-20 py-8 h-screen justify-start items-dtart flex-row gap-8">
+      <div className="flex flex-wrap justify-start items-center px-20 py-8 h-auto justify-start items-dtart flex-row gap-2 bg-gray-200">
         {data && !category
           ? data.map((data, key) => {
               // if (key % 2 == 1)
