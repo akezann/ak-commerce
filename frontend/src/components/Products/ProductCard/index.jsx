@@ -1,14 +1,15 @@
 import React from "react";
 import AddToCartIcon from "../../../assets/AddToCartIcon";
-import RateStar from "../../../assets/RateStar";
+import HeartIcon from "../../../assets/HeartIcon";
 import formatPrice from "../../../utils/formatPrix";
 
 // redux
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart, removeFromCart, clearCart } from "../../../redux/cartSlice";
+import { addToFavorite } from "../../../redux/favoriteSlice";
 
 function ProductCard(props) {
-  const cart = useSelector((state) => state.cart.cartItems);
+  const cart = useSelector((state) => state.favorite.favoriteItems);
   const dispatch = useDispatch();
 
   const handleAddToCart = (item) => {
@@ -16,19 +17,28 @@ function ProductCard(props) {
     console.log(item);
   };
 
+  const handleAddFav = (item) => {
+    dispatch(addToFavorite(item));
+  };
+
   console.log(cart);
 
   return (
-    <div className="flex justify-start items-center bg-white flex-col w-64 h-96 gap-1 rounded-sm hover:shadow-lg duration-200">
-      <div className="w-full h-3/5 relative cursor-pointer">
+    <div className="flex justify-start items-center bg-white flex-col w-64 h-96 gap-1 rounded-[8px] hover:shadow-xl duration-200">
+      <div className="w-full h-3/5 relative cursor-pointer p-2">
         <img
           src={props.image}
           alt={props.title}
-          className="w-full h-full object-fill rounded-t-md shadow-sm brightness-75"
+          className="w-full h-full object-fill rounded-[4px]"
         />
-        {/* <span className="flex justify-center items-center absolute top-2 right-2 bg-black bg-opacity-75 py-0 px-2 rounded-md text-gray-200 text-xs font-semibold">
-          {props.brand}
-        </span> */}
+        <span
+          onClick={() => {
+            handleAddFav(props.id);
+          }}
+          className="flex justify-center items-center absolute top-2 right-2 text-gray-200 bg-black bg-opacity-30 rounded-[4px] p-[2px] text-gray-100 "
+        >
+          <HeartIcon />
+        </span>
         <span></span>
       </div>
       <div className="flex flex-col w-full h-1/3 p-2 gap-2 relative">
@@ -62,7 +72,7 @@ function ProductCard(props) {
             <AddToCartIcon />
             add to cart
           </span> */}
-          <span className="text-sm underline cursor-pointer w-full text-end">
+          <span className="text-sm underline cursor-pointer w-full text-end text-yellow-500 hover:text-yellow-600 duration-200">
             More details {">"}
           </span>
         </div>
