@@ -5,23 +5,16 @@ import formatPrice from "../../../utils/formatPrix";
 
 // redux
 import { useSelector, useDispatch } from "react-redux";
-import { addToCart, removeFromCart, clearCart } from "../../../redux/cartSlice";
 import { addToFavorite } from "../../../redux/favoriteSlice";
 
 function ProductCard(props) {
-  const cart = useSelector((state) => state.favorite.favoriteItems);
+  const favorite = useSelector((state) => state.favorite.favoriteItems);
+  const cart = useSelector((state) => state.cart.cartItems);
+
   const dispatch = useDispatch();
-
-  const handleAddToCart = (item) => {
-    dispatch(addToCart(item));
-    console.log(item);
-  };
-
   const handleAddFav = (item) => {
     dispatch(addToFavorite(item));
   };
-
-  console.log(cart);
 
   return (
     <div className="flex justify-start items-center bg-white flex-col w-64 h-96 gap-1 rounded-[8px] hover:shadow-xl duration-200">
@@ -35,9 +28,14 @@ function ProductCard(props) {
           onClick={() => {
             handleAddFav(props.id);
           }}
-          className="flex justify-center items-center absolute top-2 right-2 text-gray-200 bg-black bg-opacity-30 rounded-[4px] p-[2px] text-gray-100 "
+          className={`flex justify-center items-center absolute top-2 right-2 text-gray-200 bg-gray-500 ${
+            favorite.includes(props.id) ? "bg-opacity-30" : "bg-opacity-40"
+          } rounded-[4px] p-[2px]`}
         >
-          <HeartIcon />
+          <HeartIcon
+            color={favorite.includes(props.id) ? "#FFA500" : "#F0F8FF"}
+            liked={favorite.includes(props.id)}
+          />
         </span>
         <span></span>
       </div>
@@ -65,7 +63,11 @@ function ProductCard(props) {
         <div className="flex justify-between items-center">
           {/* <span
             onClick={() => {
-              handleAddToCart(props.id);
+              handleAddToCart({
+                id: props.id,
+                quantity: 0,
+                price: props.price,
+              });
             }}
             className="flex justify-center items-center gap-1 text-sm cursor-pointer font-medium text-underline bg-yellow-500 w-max px-2 py-px rounded-xl bg-opacity-50 hover:bg-opacity-75 ease-in duration-100"
           >

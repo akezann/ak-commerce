@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 // components
 import Input from "./../../common/Input";
@@ -9,11 +9,21 @@ import CartIcon from "../../assets/CartIcon";
 
 // reducers
 import { useSelector, useDispatch } from "react-redux";
+import { setSearchValue } from "../../redux/filter";
 
 function index() {
   const cart = useSelector((state) => state.cart.cartItems);
+  const searchValueReducer = useSelector((state) => state.filter.searchValue);
+  const [searchVal, setSearchVal] = useState("");
+  const dispatch = useDispatch();
 
-  console.log(cart)
+  const handleChange = (e) => {
+    const newText = e.target.value;
+    setSearchVal(newText);
+
+    dispatch(setSearchValue(newText));
+  };
+  console.log(11, searchVal, searchValueReducer)
   return (
     <div className="flex justify-between items-center bg-white p-4 px-20">
       <div className="flex justify-center items-center cursor-pointer">
@@ -34,6 +44,8 @@ function index() {
               "w-full h-11 rounded-full focus:outline-none border focus:border-yellow-500 px-4"
             }
             placeholder="Seach..."
+            value={searchValueReducer ? searchValueReducer : searchVal}
+            onChange={handleChange}
           />
           <span className="absolute top-2 right-4">
             <SearchIcon />
