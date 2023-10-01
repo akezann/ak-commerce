@@ -15,16 +15,19 @@ const App = () => {
   const searchValueReducer = useSelector((state) => state.filter.searchValue);
 
   const [category, setCategory] = useState("");
-  const [date, setDate] = useState(new Date());
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("https://dummyjson.com/products");
-        setData(response.data.products);
+        const response = await axios.get("https://fakestoreapi.com/products");
+        setData(response.data);
+        console.log(109, response)
       } catch (error) {
+        console.log(109, error)
+
         console.error(error);
       }
     };
+    console.log(123,data)
 
     fetchData();
   }, []);
@@ -33,7 +36,7 @@ const App = () => {
     <div>
       <SubNavbar />
       <Navbar />
-      <div className="flex flex-wrap justify-start items-start px-20 py-8 h-screen justify-start items-dtart flex-row gap-2 bg-gray-200">
+      <div className="flex flex-wrap justify-start items-start px-20 py-8 h-full justify-start items-dtart flex-row gap-4">
         {data && searchValueReducer === ""
           ? data
               .filter((item) => {
@@ -47,12 +50,10 @@ const App = () => {
                     key={key}
                     id={data.id}
                     title={data.title}
-                    image={data.images[0]}
+                    image={data.image}
                     description={data.description}
                     price={data.price}
-                    rating={data.rating}
-                    stock={data.stock}
-                    brand={data.brand}
+                    rating={data.rating.rate}
                   />
                 );
               })

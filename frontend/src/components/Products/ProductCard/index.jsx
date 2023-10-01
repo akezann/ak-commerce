@@ -1,5 +1,6 @@
 import React from "react";
 import AddToCartIcon from "../../../assets/AddToCartIcon";
+import RateStar from "../../../assets/RateStar";
 import HeartIcon from "../../../assets/HeartIcon";
 import formatPrice from "../../../utils/formatPrix";
 
@@ -17,12 +18,12 @@ function ProductCard(props) {
   };
 
   return (
-    <div className="flex justify-start items-center bg-white flex-col w-64 h-96 gap-1 rounded-[8px] hover:shadow-xl duration-200">
-      <div className="w-full h-3/5 relative cursor-pointer p-2">
+    <div className="flex justify-start items-center bg-white flex-col w-64 h-96 gap-1 hover:shadow-lg rounded-b-[8px] duration-200 p-2">
+      <div className="w-full h-3/5 relative cursor-pointer p-4 bg-gray-100 rounded-[8px]">
         <img
           src={props.image}
           alt={props.title}
-          className="w-full h-full object-fill rounded-[4px]"
+          className="w-full h-full object-contain rounded-[4px] mix-blend-multiply  rounded-[8px] transform scale-100 hover:scale-110 transition-transform duration-500 ease-in-out"
         />
         <span
           onClick={() => {
@@ -56,9 +57,10 @@ function ProductCard(props) {
               <span className="font-semibold test-sm">left</span> in stock!
             </p> */}
           </div>
-          {/* <p className="flex flex-row justify-center items-center gap-1 absolute top-2 bg-yellow-300 bg-opacity-75  right-1 text-xs font-semibold px-1 rounded-md m-0">
-            {props.rating} <RateStar />
-          </p> */}
+          <p className="flex flex-row justify-center items-center gap-1 absolute top-2 right-1 text-xs font-semibold px-1 rounded-md m-0">
+            <RateStar />
+            {props.rating}
+          </p>
         </div>
         <div className="flex justify-between items-center">
           {/* <span
