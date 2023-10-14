@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 // components
 import Input from "./../../common/Input";
@@ -20,17 +21,19 @@ function index() {
   const handleChange = (e) => {
     const newText = e.target.value;
     setSearchVal(newText);
-
     dispatch(setSearchValue(newText));
   };
   return (
-    <div className="flex justify-between items-center bg-white p-4 px-20">
-      <div className="flex justify-center items-center cursor-pointer">
-        <LogoIcon />
-        <p className="text-lg font-semibold">
-          <span className="text-2xl text-yellow-500 font-bold">AK</span>Shop
-        </p>
-      </div>
+    <div className="flex justify-between items-center bg-white p-4 px-20 sticky top-0 left-0 z-10">
+      <Link to={'/'}>
+        <div className="flex justify-center items-center cursor-pointer">
+          <LogoIcon />
+          <p className="text-lg font-semibold">
+            <span className="text-2xl text-yellow-500 font-bold">AK</span>Shop
+          </p>
+        </div>
+      </Link>
+
       <div className="w-1/2">
         <form
           className="relative"

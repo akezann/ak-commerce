@@ -4,20 +4,40 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from "./components/Navbar";
 import SubNavbar from "./components/Navbar/SubNavbar";
 import ProductsContainer from './components/Products/ProductsContainer'
+import Favorites from './components/Products/Favorites'
+import { useSelector, useDispatch } from "react-redux";
+import { addData } from "./redux/data";
+import axios from "axios";
+
 
 //styles
 import "./App.css";
 
 const App = () => {
+  const dispatch = useDispatch()
+  const [data, setData] = useState([]) 
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("https://fakestoreapi.com/products");
+        dispatch(addData(response.data))
+        setData(response.data)
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
-    <div>
-      <SubNavbar />
-      <Navbar />
+    <div className="relative">
       <Router>
+        <SubNavbar />
+        <Navbar />
         <Routes>
-          <Route path="/" element={<ProductsContainer />}>
-          </Route>
+          <Route path="/" element={<ProductsContainer products={data} />} />
+          <Route path="/favorites" element={<Favorites />} />
         </Routes>
       </Router>
     </div>
