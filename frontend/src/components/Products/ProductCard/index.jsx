@@ -1,5 +1,4 @@
 import React from "react";
-import AddToCartIcon from "../../../assets/AddToCartIcon";
 import RateStar from "../../../assets/RateStar";
 import HeartIcon from "../../../assets/HeartIcon";
 import formatPrice from "../../../utils/formatPrix";
@@ -29,9 +28,8 @@ function ProductCard(props) {
           onClick={() => {
             handleAddFav(props.id);
           }}
-          className={`flex justify-center items-center absolute top-2 right-2 text-gray-200 bg-gray-500 ${
-            favorite.includes(props.id) ? "bg-opacity-30" : "bg-opacity-40"
-          } rounded-[4px] p-[2px]`}
+          className={`flex justify-center items-center absolute top-2 right-2 text-gray-200 bg-gray-500 ${favorite.includes(props.id) ? "bg-opacity-30" : "bg-opacity-40"
+            } rounded-[4px] p-[2px]`}
         >
           <HeartIcon
             color={favorite.includes(props.id) ? "#FFA500" : "#F0F8FF"}
@@ -48,14 +46,9 @@ function ProductCard(props) {
               {props.description}
             </p>
             <span className="text-2xl font-bold text-black relative">
-              {`${formatPrice(props.price)}.00`}
+              {`${formatPrice(props.price)}`}
               <span className="text-lg  absolute t-1">$</span>
             </span>
-            {/* <p className="text-xs m-0 text-gray-500		">
-              Hurry! Only{" "}
-              <span className="font-semibold test-sm">{props.stock}</span> items{" "}
-              <span className="font-semibold test-sm">left</span> in stock!
-            </p> */}
           </div>
           <p className="flex flex-row justify-center items-center gap-1 absolute top-2 right-1 text-xs font-semibold px-1 rounded-md m-0">
             <RateStar />
@@ -63,19 +56,6 @@ function ProductCard(props) {
           </p>
         </div>
         <div className="flex justify-between items-center">
-          {/* <span
-            onClick={() => {
-              handleAddToCart({
-                id: props.id,
-                quantity: 0,
-                price: props.price,
-              });
-            }}
-            className="flex justify-center items-center gap-1 text-sm cursor-pointer font-medium text-underline bg-yellow-500 w-max px-2 py-px rounded-xl bg-opacity-50 hover:bg-opacity-75 ease-in duration-100"
-          >
-            <AddToCartIcon />
-            add to cart
-          </span> */}
           <span className="text-sm underline cursor-pointer w-full text-end text-yellow-500 hover:text-yellow-600 duration-200">
             More details {">"}
           </span>

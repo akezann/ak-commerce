@@ -23,7 +23,6 @@ function index() {
 
     dispatch(setSearchValue(newText));
   };
-  console.log(11, searchVal, searchValueReducer)
   return (
     <div className="flex justify-between items-center bg-white p-4 px-20">
       <div className="flex justify-center items-center cursor-pointer">
