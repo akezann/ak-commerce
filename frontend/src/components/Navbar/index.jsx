@@ -24,7 +24,7 @@ function index() {
     dispatch(setSearchValue(newText));
   };
   return (
-    <div className="flex justify-between items-center bg-white p-4 px-20 sticky top-0 left-0 z-10">
+    <div className="flex justify-between items-start gap-4 w-full flex-col bg-white p-4 px-20 sticky top-0 left-0 z-10 sm:flex-row sm:items-center sm:gap-0">
       <Link to={'/'}>
         <div className="flex justify-center items-center cursor-pointer">
           <LogoIcon />
@@ -34,7 +34,7 @@ function index() {
         </div>
       </Link>
 
-      <div className="w-1/2">
+      <div className="sm:w-1/2 w-full">
         <form
           className="relative"
           onSubmit={(e) => {
@@ -43,9 +43,9 @@ function index() {
         >
           <Input
             style={
-              "w-full h-11 rounded-full focus:outline-none border focus:border-yellow-500 px-4"
+              "w-full h-11 rounded-full focus:outline-none border focus:border-yellow-500 px-4 text-lg"
             }
-            placeholder="Seach..."
+            placeholder="Seach"
             value={searchValueReducer ? searchValueReducer : searchVal}
             onChange={handleChange}
           />

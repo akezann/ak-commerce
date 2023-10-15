@@ -6,12 +6,15 @@ import ProductCard from "../ProductCard";
 import { useSelector } from "react-redux";
 
 function index() {
-  const cart = useSelector((state) => state.productdata.data);
-  const [data, setData] = useState(cart)
+  const productdata = useSelector((state) => state.productdata.data);
+  const [data, setData] = useState()
   const searchValueReducer = useSelector((state) => state.filter.searchValue);
   
+  useEffect(() => {
+    setData(productdata)
+  }, [productdata])
   return (
-    <div className="flex flex-wrap justify-start items-start px-20 py-8 h-full justify-start items-dtart flex-row gap-4">
+    <div className="flex flex-wrap justify-center items-start px-4 py-8 h-full justify-start items-dtart flex-row gap-4">
       {data
         ? data
           .filter((item) => {

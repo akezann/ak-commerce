@@ -2,42 +2,55 @@ import React from 'react'
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ProductCard from "../ProductCard";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { clearFavorite } from '../../../redux/favoriteSlice';
 
 function index() {
   const favorite = useSelector((state) => state.favorite.favoriteItems);
-  const cart = useSelector((state) => state.productdata.data);
+  const productdata = useSelector((state) => state.productdata.data);
   const searchValueReducer = useSelector((state) => state.filter.searchValue);
+  const dispatch = useDispatch()
 
 
 
-  const [data, setData] = useState(cart);
-
-  console.log(11,data)
+  const [data, setData] = useState(productdata);
 
   return (
-    <div className="flex flex-wrap justify-start items-start px-20 py-8 h-full justify-start items-dtart flex-row gap-4">
-      {data
-        ? data
-          .filter((item) => {
-            if (searchValueReducer !== "")
-              return item.title.includes(searchValueReducer) && item.title.toLowerCase().includes(searchValueReducer)
-            return item
-          })
-          .map((data, key) => {
-            return (
-              <ProductCard
-                key={key}
-                id={data.id}
-                title={data.title}
-                image={data.image}
-                description={data.description}
-                price={data.price}
-                rating={data.rating.rate}
-              />
-            );
-          })
-        : null}
+    <div className="flex flex-wrap justify-start flex-col items-start px-8 py-8 h-full justify-start items-dtart flex-row ">
+      {favorite.length > 0 ? <div className="flex flex-wrap justify-center  px-4 py-0 flex-row gap-4">
+        <p className='bg-yellow-400 rounded-full text-sm font-semibold p-2 px-4 cursor-pointer ' onClick={() => { dispatch(clearFavorite()) }}>clear Fav</p>
+      </div> : null}
+      <div className="flex flex-wrap justify-start items-start px-2 py-8 w-full h-full justify-start items-dtart flex-row gap-4">
+        {data && favorite.length > 0
+          ? data
+            .filter((item => {
+              if (favorite.length > 0)
+                return favorite.includes(item.id)
+            }))
+            .filter((item) => {
+              if (searchValueReducer !== "")
+                return item.title.includes(searchValueReducer) && item.title.toLowerCase().includes(searchValueReducer)
+              return item
+            })
+            .map((data, key) => {
+              return (
+                <ProductCard
+                  key={key}
+                  id={data.id}
+                  title={data.title}
+                  image={data.image}
+                  description={data.description}
+                  price={data.price}
+                  rating={data.rating.rate}
+                />
+              );
+            })
+          :
+          <div className='h-full w-full flex justify-center items-center'>
+            <p className='text-xl font-400'>There is no favorites. !<i class="fa fa-heart "></i><i class="fa fa-heart rotate-180"></i>!</p>
+          </div> 
+          }
+      </div>
     </div>
   )
 }

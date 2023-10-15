@@ -15,13 +15,12 @@ import "./App.css";
 
 const App = () => {
   const dispatch = useDispatch()
-  const [data, setData] = useState([]) 
+  const [data, setData] = useState([])
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get("https://fakestoreapi.com/products");
-        dispatch(addData(response.data))
         setData(response.data)
       } catch (error) {
         console.error(error);
@@ -29,6 +28,11 @@ const App = () => {
     };
     fetchData();
   }, []);
+
+  console.log(11, data)
+  useEffect(() => {
+    dispatch(addData(data))
+  }, [data])
 
   return (
     <div className="relative">
