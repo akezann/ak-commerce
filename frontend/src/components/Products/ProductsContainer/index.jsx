@@ -9,7 +9,7 @@ function index() {
   const productdata = useSelector((state) => state.productdata.data);
   const [data, setData] = useState()
   const searchValueReducer = useSelector((state) => state.filter.searchValue);
-  
+
   useEffect(() => {
     setData(productdata)
   }, [productdata])
@@ -22,16 +22,11 @@ function index() {
               return item.title.includes(searchValueReducer)
             return item
           })
-          .map((data, key) => {
+          .map((item, key) => {
             return (
               <ProductCard
                 key={key}
-                id={data.id}
-                title={data.title}
-                image={data.image}
-                description={data.description}
-                price={data.price}
-                rating={data.rating.rate}
+                data={item}
               />
             );
           })

@@ -12,7 +12,7 @@ function CartIcon() {
         <g
           id="SVGRepo_tracerCarrier"
           stroke-linecap="round"
-          stroke-linejoin="round"
+          // stroke-linejoin="round"
         ></g>
         <g id="SVGRepo_iconCarrier">
           {" "}
@@ -21,7 +21,7 @@ function CartIcon() {
             stroke="#000000"
             stroke-width="2"
             stroke-linecap="round"
-            stroke-linejoin="round"
+            // stroke-linejoin="round"
           ></path>{" "}
         </g>
       </svg>

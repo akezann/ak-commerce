@@ -18,7 +18,7 @@ function index() {
   return (
     <div className="flex flex-wrap justify-start flex-col items-start px-8 py-8 h-full justify-start items-dtart flex-row ">
       {favorite.length > 0 ? <div className="flex flex-wrap justify-center  px-4 py-0 flex-row gap-4">
-        <p className='bg-yellow-400 rounded-full text-sm font-semibold p-2 px-4 cursor-pointer ' onClick={() => { dispatch(clearFavorite()) }}>clear Fav</p>
+        <p className=' rounded-full text-sm font-semibold p-2 px-4 cursor-pointer bg-opacity-75 hover:underline ' onClick={() => { dispatch(clearFavorite()) }}>clear Favorites</p>
       </div> : null}
       <div className="flex flex-wrap justify-start items-start px-2 py-8 w-full h-full justify-start items-dtart flex-row gap-4">
         {data && favorite.length > 0
@@ -36,12 +36,7 @@ function index() {
               return (
                 <ProductCard
                   key={key}
-                  id={data.id}
-                  title={data.title}
-                  image={data.image}
-                  description={data.description}
-                  price={data.price}
-                  rating={data.rating.rate}
+                  data={data}
                 />
               );
             })

@@ -29,7 +29,6 @@ const App = () => {
     fetchData();
   }, []);
 
-  console.log(11, data)
   useEffect(() => {
     dispatch(addData(data))
   }, [data])
