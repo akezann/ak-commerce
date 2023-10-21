@@ -31,13 +31,20 @@ function ProductCard({ data }) {
     }
   }
 
+  useEffect(() => {
+    if (showModal)
+      document.body.style.overflow = 'hidden'
+    else
+      document.body.style.overflow = 'unset'
+  }, [showModal])
+
   return (
     <div className="flex justify-start items-center bg-white flex-col max-w-[277px]  h-96 gap-1 hover:shadow-lg rounded-b-[8px] duration-200 p-2 sm:max-w-xs">
-      <div className="w-full h-3/5 relative cursor-pointer p-4 bg-gray-100 rounded-[8px]">
+      <div className="w-full h-3/5 relative cursor-pointer p-4 bg-gray-100 rounded-[8px]" onClick={toggleModal}>
         <img
           src={data.image}
           alt={data.title}
-          className="w-full h-full object-contain rounded-[4px] mix-blend-multiply  rounded-[8px] transform scale-100 hover:scale-110 transition-transform duration-500 ease-in-out"
+          className="w-full h-full object-contain rounded-[4px] mix-blend-multiply  rounded-[8px] transform scale-100 hover:scale-105 transition-transform duration-500 ease-in-out"
         />
         <span
           onClick={() => {
@@ -51,7 +58,6 @@ function ProductCard({ data }) {
             liked={favorite.includes(data.id)}
           />
         </span>
-        <span></span>
       </div>
       <div className="flex flex-col w-full h-1/3 p-2 gap-2 relative">
         <div>
@@ -79,7 +85,7 @@ function ProductCard({ data }) {
       {showModal ? (
         <Modal showModal={showModal} handleClickOutside={handleClickOutside}>
           <div className="bg-white min-w-[100%] h-screen relative lg:min-w-[1000px] lg:h-[800px] rounded-lg" ref={modalContentRef}>
-            <ProductDetails data={ data } setShowModal={setShowModal} />
+            <ProductDetails data={data} setShowModal={setShowModal} />
           </div>
         </Modal>
       ) : null}
