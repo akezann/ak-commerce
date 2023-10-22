@@ -7,10 +7,10 @@ function SubNavbar() {
 
 
   return (
-    <div className="flex justify-end items-center  w-full bg-gray-100 p-2 px-20">
-      <ul className="flex justify-center items-center gap-4">
+    <div className="flex justify-end items-center  w-full bg-gray-100 p-2 px-6 sm:px-24">
+      <ul className="flex justify-center items-center gap sm:gap-4">
         <Link to={'/favorites'}>
-          <li className="flex justify-center items-center text-sm gap-2 mr-2 cursor-pointer">
+          <li className="test-[14px] flex justify-center items-center text-sm gap-2 mr-2 cursor-pointer">
             <i class="fa fa-heart"></i>
             <span className="hover:underline">
               My Favorites {`(${favorite.length})`}

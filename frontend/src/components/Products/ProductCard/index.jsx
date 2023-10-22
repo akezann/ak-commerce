@@ -39,8 +39,8 @@ function ProductCard({ data }) {
   }, [showModal])
 
   return (
-    <div className="flex justify-start items-center bg-white flex-col max-w-[277px]  h-96 gap-1 hover:shadow-lg rounded-b-[8px] duration-200 p-2 sm:max-w-xs">
-      <div className="w-full h-3/5 relative cursor-pointer p-4 bg-gray-100 rounded-[8px]" onClick={toggleModal}>
+    <div className="flex-1 justify-start items-center bg-white flex-col min-w-[275px] mx-w-full sm:max-w-[348px] shrink  h-96 gap-1 hover:shadow-lg rounded-b-[8px] duration-200 p-2 ">
+      <div className="w-full h-3/5 relative cursor-pointer p-4 bg-gray-100 rounded-[8px]">
         <img
           src={data.image}
           alt={data.title}
