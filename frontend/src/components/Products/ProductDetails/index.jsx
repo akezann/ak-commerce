@@ -29,14 +29,19 @@ function index({ data, setShowModal }) {
           </span>
         </div>
       </div>
-      <div className='flex justify-center items-center w-96 h-96 p-2 border border-yellow-500 rounded-lg'>
-        <img
-          src={data.image}
-          alt={data.title}
-          className="w-72 h-72 object-contain rounded-[4px] mix-blend-multiply rounded-[8px]  transform scale-100 hover:scale-110 transition-transform duration-500 ease-in-out"
-        />
+      <div className='flex flex-row h-full'>
+        <div className='flex justify-center items-start w-96 h-96 p-2 border-r h-full' 
+        >
+          <img
+            src={data.image}
+            alt={data.title}
+            className="w-72 h-72 object-contain rounded-[4px] mix-blend-multiply rounded-[8px]  transform scale-100 hover:scale-110 transition-transform duration-500 ease-in-out"
+          />
+        </div>
+        <div className='px-4'>
+          <p className='m-0 text-2xl font-500'>{data.title}</p>
+        </div>
       </div>
-      <div></div>
     </div>
   )
 }
