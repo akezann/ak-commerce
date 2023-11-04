@@ -5,6 +5,8 @@ import formatPrice from "../../../utils/formatPrix";
 import Modal from "../../../common/Modal";
 import ProductDetails from '../ProductDetails'
 
+import style from "../../../../styles/cards.json"
+
 // redux
 import { useSelector, useDispatch } from "react-redux";
 import { addToFavorite } from "../../../redux/favoriteSlice";
@@ -39,9 +41,10 @@ function ProductCard({ data }) {
   }, [showModal])
 
   return (
-    <div className="flex justify-start items-center bg-white flex-col max-w-[277px]  h-96 gap-1 hover:shadow-lg rounded-b-[8px] duration-200 p-2 sm:max-w-xs">
-      <div className="w-full h-3/5 relative cursor-pointer p-4 bg-gray-100 rounded-[8px]" onClick={toggleModal}>
+    <div className={`${style.container}`}>
+      <div className={`${style.imageContainer}`}>
         <img
+          onClick={toggleModal}
           src={data.image}
           alt={data.title}
           className="w-full h-full object-contain rounded-[4px] mix-blend-multiply  rounded-[8px] transform scale-100 hover:scale-105 transition-transform duration-500 ease-in-out"
