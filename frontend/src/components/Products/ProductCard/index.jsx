@@ -41,8 +41,8 @@ function ProductCard({ data }) {
   }, [showModal])
 
   return (
-    <div className={`${style.container}`}>
-      <div className={`${style.imageContainer}`}>
+    <div className={`flex justify-start items-center bg-white flex-col max-w-[277px]  h-96 gap-1 hover:shadow-lg rounded-b-[8px] duration-200 p-2 sm:max-w-xs`}>
+      <div className={`w-full h-3/5 relative cursor-pointer p-4 bg-gray-100 rounded-[8px]`}>
         <img
           onClick={toggleModal}
           src={data.image}
