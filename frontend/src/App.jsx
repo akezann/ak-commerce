@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import SubNavbar from "./components/Navbar/SubNavbar";
 import ProductsContainer from './components/Products/ProductsContainer'
 import Favorites from './components/Products/Favorites'
+import LandingHomePage from './LandingHomePage'
 import { useSelector, useDispatch } from "react-redux";
 import { addData } from "./redux/data";
 import axios from "axios";
@@ -39,7 +40,8 @@ const App = () => {
         <SubNavbar />
         <Navbar />
         <Routes>
-          <Route path="/" element={<ProductsContainer products={data} />} />
+          <Route path="/" element={<LandingHomePage />} />
+          <Route path="/products" element={<ProductsContainer products={data} />} />
           <Route path="/favorites" element={<Favorites />} />
         </Routes>
       </Router>

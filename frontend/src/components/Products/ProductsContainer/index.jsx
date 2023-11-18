@@ -11,7 +11,9 @@ function index() {
   const searchValueReducer = useSelector((state) => state.filter.searchValue);
 
   useEffect(() => {
-    setData(productdata);
+    setTimeout(() => {
+      setData(productdata);
+    }, 800)
   }, [productdata]);
 
   return (
@@ -34,7 +36,7 @@ function index() {
               return <ProductCard key={key} data={item} />;
             })
         ) : (
-          <p>loading...</p>
+          <p className="w-screen flex justify-center items-center text-xl text-bold">loading...</p>
         )}
       </div>
     </div>
