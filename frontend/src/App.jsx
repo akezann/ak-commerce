@@ -3,9 +3,15 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import SubNavbar from "./components/Navbar/SubNavbar";
+<<<<<<< HEAD
 import ProductsContainer from "./components/Products/ProductsContainer";
 import Favorites from "./components/Products/Favorites";
 import Home from "./components/Home";
+=======
+import ProductsContainer from './components/Products/ProductsContainer'
+import Favorites from './components/Products/Favorites'
+import LandingHomePage from './LandingHomePage'
+>>>>>>> d920be17665891eea334ee3317e6e013ef67f516
 import { useSelector, useDispatch } from "react-redux";
 import { addData } from "./redux/data";
 import axios from "axios";
