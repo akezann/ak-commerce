@@ -26,7 +26,7 @@ function index() {
 
   return (
     <div className="flex justify-between items-start gap-4 w-full flex-col bg-white p-4 px-6 lg:px-24 sticky top-0 left-0 z-10 sm:flex-row sm:items-center sm:gap-0">
-      <Link to={'/'}>
+      <Link to={"/"}>
         <div className="flex justify-center items-center cursor-pointer">
           <LogoIcon />
           <p className="text-lg font-semibold">
@@ -65,7 +65,7 @@ function index() {
         <button className="text-sm font-semibold p-2 px-4 rounded-full underline">
           Login
         </button>
-        <button className="bg-yellow-400 rounded-full text-sm font-semibold p-2 px-4 ">
+        <button className="bg-yellow-500 hover:bg-yellow-600 rounded-full text-sm text-white font-semibold p-2 px-4 ">
           Signup
         </button>
       </div>
