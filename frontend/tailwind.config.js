@@ -3,12 +3,12 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     screens: {
-      xs: "460px",
-      sm:"612px",
-      md: "784px",
-      lg:"1024px",
-      xl:"1280px",
-      "2xl":"1536px"
+      xs: "480px",
+      sm: "784px",
+      md: "890px",
+      lg: "1100px",
+      xl: "1280px",
+      "2xl": "1536px",
     },
   },
   plugins: [],

@@ -3,9 +3,9 @@ import RateStar from "../../../assets/RateStar";
 import HeartIcon from "../../../assets/HeartIcon";
 import formatPrice from "../../../utils/formatPrix";
 import Modal from "../../../common/Modal";
-import ProductDetails from '../ProductDetails'
+import ProductDetails from "../ProductDetails";
 
-import style from "../../../../styles/cards.json"
+import style from "../../../../styles/cards.json";
 
 // redux
 import { useSelector, useDispatch } from "react-redux";
@@ -28,21 +28,26 @@ function ProductCard({ data }) {
   const modalContentRef = useRef();
 
   const handleClickOutside = (event) => {
-    if (modalContentRef.current && !modalContentRef.current.contains(event.target)) {
+    if (
+      modalContentRef.current &&
+      !modalContentRef.current.contains(event.target)
+    ) {
       setShowModal(false);
     }
-  }
+  };
 
   useEffect(() => {
-    if (showModal)
-      document.body.style.overflow = 'hidden'
-    else
-      document.body.style.overflow = 'unset'
-  }, [showModal])
+    if (showModal) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "unset";
+  }, [showModal]);
 
   return (
-    <div className={`flex justify-start items-center bg-white flex-col min-w-[232px]  max-w-[w-screen]  h-96 gap-1 hover:shadow-lg rounded-b-[8px] duration-200 p-2 `}>
-      <div className={`w-full h-3/5 relative cursor-pointer p-4 bg-gray-100 rounded-[8px]`}>
+    <div
+      className={`flex justify-start items-center bg-white flex-col min-w-[232px]  max-w-[w-screen]  h-96 gap-1 hover:shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] rounded-[8px] duration-600 p-2 `}
+    >
+      <div
+        className={`w-full h-3/5 relative cursor-pointer p-4 bg-gray-100 rounded-[4px]`}
+      >
         <img
           onClick={toggleModal}
           src={data.image}
@@ -53,8 +58,9 @@ function ProductCard({ data }) {
           onClick={() => {
             handleAddFav(data.id);
           }}
-          className={`flex justify-center items-center absolute top-2 right-2 text-gray-200 bg-gray-500 ${favorite.includes(data.id) ? "bg-opacity-30" : "bg-opacity-40"
-            } rounded-[4px] p-[2px]`}
+          className={`flex justify-center items-center absolute top-2 right-2 text-gray-200 bg-gray-500 ${
+            favorite.includes(data.id) ? "bg-opacity-30" : "bg-opacity-40"
+          } rounded-[4px] p-[2px]`}
         >
           <HeartIcon
             color={favorite.includes(data.id) ? "#FFA500" : "#F0F8FF"}
@@ -80,14 +86,20 @@ function ProductCard({ data }) {
           </p>
         </div>
         <div className="flex justify-between items-center">
-          <span onClick={toggleModal} className="text-sm underline cursor-pointer w-full text-end text-yellow-500 hover:text-yellow-600 duration-200">
+          <span
+            onClick={toggleModal}
+            className="text-sm underline cursor-pointer w-full text-end text-yellow-500 hover:text-yellow-600 duration-200"
+          >
             More details {">"}
           </span>
         </div>
       </div>
       {showModal ? (
         <Modal showModal={showModal} handleClickOutside={handleClickOutside}>
-          <div className="bg-white min-w-[100%] h-screen relative lg:min-w-[1000px] lg:h-[800px] rounded-lg" ref={modalContentRef}>
+          <div
+            className="bg-white min-w-[100%] h-screen relative lg:min-w-[1000px] lg:h-[800px] rounded-lg"
+            ref={modalContentRef}
+          >
             <ProductDetails data={data} setShowModal={setShowModal} />
           </div>
         </Modal>
