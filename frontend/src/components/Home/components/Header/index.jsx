@@ -14,11 +14,11 @@ const links = [
   },
   {
     category: "jewelery",
-    link: "jewelery",
+    link: "/products/jewelery",
   },
   {
     category: "electronics",
-    link: "electronics",
+    link: "/products/electronics",
   },
 ];
 
