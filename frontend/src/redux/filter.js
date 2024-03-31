@@ -4,7 +4,7 @@ const initialState = {
   filter: {
     prixmax: 0,
     prixmin: 0,
-    category: 0,
+    category: "",
   },
   searchValue: "",
 };
@@ -22,6 +22,6 @@ const filterSlice = createSlice({
   },
 });
 
-export const {setFilters, setSearchValue} = filterSlice.actions;
+export const { setFilters, setSearchValue } = filterSlice.actions;
 
-export default filterSlice.reducer
+export default filterSlice.reducer;

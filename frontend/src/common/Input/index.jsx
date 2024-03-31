@@ -1,10 +1,15 @@
 import React from "react";
 
-function index({ style, onChange, value, placeholder }) {
+function index({ styleClass, type, onChange, value, placeholder, ...props }) {
   return (
-    <>
-      <input type="text" onChange={onChange} value={value} className={style} placeholder={placeholder} />
-    </>
+    <input
+      type={type}
+      name={props.name}
+      onChange={onChange}
+      value={value}
+      className={styleClass}
+      placeholder={placeholder}
+    />
   );
 }
 

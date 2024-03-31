@@ -43,7 +43,8 @@ function index() {
           }}
         >
           <Input
-            style={
+            type="text"
+            styleClass={
               "w-full h-11 rounded-full focus:outline-none border focus:border-yellow-500 px-4 text-lg"
             }
             placeholder="Seach"

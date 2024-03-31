@@ -6,12 +6,13 @@ import SubNavbar from "./components/Navbar/SubNavbar";
 import ProductsContainer from "./components/Products/ProductsContainer";
 import Favorites from "./components/Products/Favorites";
 import Home from "./components/Home";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addData } from "./redux/data";
 import axios from "axios";
 
 //styles
 import "./App.css";
+import LoginRegister from "./components/LoginRegister";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -46,6 +47,7 @@ const App = () => {
               element={<ProductsContainer products={data} />}
             />
             <Route path="/favorites" element={<Favorites />} />
+            <Route path="/login" element={<LoginRegister />} />
           </Routes>
         </Router>
       </div>
