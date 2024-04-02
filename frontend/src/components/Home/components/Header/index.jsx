@@ -1,6 +1,5 @@
 import video from "../../../../assets/bgLandingPage.mp4";
 import bgImage from "../../../../assets/bgHeader.jpg";
-import { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const links = [
@@ -51,7 +50,8 @@ function index() {
                 to={item.link}
                 className="text-[13px] text-white font-serif font-normal hover:text-yellow-400 underline"
               >
-                {item.category}{"."}
+                {item.category}
+                {"."}
               </Link>
             );
           })}
