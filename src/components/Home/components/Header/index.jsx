@@ -1,4 +1,3 @@
-import video from "../../../../assets/bgLandingPage.mp4";
 import bgImage from "../../../../assets/bgHeader.jpg";
 import { Link } from "react-router-dom";
 

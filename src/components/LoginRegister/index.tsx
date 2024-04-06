@@ -3,7 +3,6 @@ import Login from "./Login";
 import Register from "./Register";
 import LogoIcon from "../../assets/LogoIcon";
 import { Link } from "react-router-dom";
-// import imageOne from "../../assets/loginImage.jpg"
 function index() {
   const [currentTab, setCurrentTab] = useState("LOGIN");
   return (
