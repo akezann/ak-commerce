@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Login from "./Login";
 import Register from "./Register";
 import LogoIcon from "../../assets/LogoIcon";
-import { Link } from "react-router-dom";
 function index() {
   const [currentTab, setCurrentTab] = useState("LOGIN");
   return (
@@ -12,7 +11,7 @@ function index() {
           {currentTab === "LOGIN" ? <Login /> : <Register />}
         </div>
         <div className="w-full h-full w-[450px] relative">
-          <Link to={"/"} className="absolute top-4 left-4 z-[1]">
+          <a href={"/"} className="absolute top-4 left-4 z-[1]">
             <div className="flex justify-center items-center cursor-pointer">
               <LogoIcon />
               <p className="text-2xl font-semibold">
@@ -20,7 +19,7 @@ function index() {
                 Shop
               </p>
             </div>
-          </Link>
+          </a>
           <img
             className="w-full h-full !rounded-r-xl brightness-75 "
             src={

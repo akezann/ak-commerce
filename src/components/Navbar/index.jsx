@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-
 // components
 import Input from "./../../common/Input";
 // assets
@@ -26,14 +24,14 @@ function index() {
 
   return (
     <div className="flex justify-between items-start gap-4 w-full flex-col bg-white p-4 px-6 lg:px-[80px] sticky top-0 left-0 z-10 sm:flex-row sm:items-center sm:gap-0">
-      <Link to={"/"}>
+      <a href={"/"}>
         <div className="flex justify-center items-center cursor-pointer">
           <LogoIcon />
           <p className="text-lg font-semibold">
             <span className="text-2xl text-yellow-500 font-bold">AK</span>Shop
           </p>
         </div>
-      </Link>
+      </a>
 
       <div className="sm:w-1/2 w-full">
         <form
