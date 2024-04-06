@@ -1,21 +1,22 @@
 import bgImage from "../../../../assets/bgHeader.jpg";
+import { Link } from "react-router-dom";
 
-const as = [
+const links = [
   {
     category: "men's clothing",
-    a: "/products/mens",
+    link: "/products/mens",
   },
   {
     category: "women's clothing",
-    a: "/products/womens",
+    link: "/products/womens",
   },
   {
     category: "jewelery",
-    a: "/products/jewelery",
+    link: "/products/jewelery",
   },
   {
     category: "electronics",
-    a: "/products/electronics",
+    link: "/products/electronics",
   },
 ];
 
@@ -36,21 +37,21 @@ function index() {
             This is a sample React webpage with a video background.
           </p>
         </div>
-        <a href={"/products"}>
+        <Link to={"/products"}>
           <span className="w-48 text-white text-2xl font-serif px-6 py-2 bg-yellow-500 hover:bg-yellow-600 flex  justify-center items-center gap-4 rounded-full">
             Acheter <i class="fas fa-arrow-right text-base"></i>
           </span>
-        </a>
+        </Link>
         <div className="flex justify-start items-start gap-2">
-          {as.map((item, key) => {
+          {links.map((item, key) => {
             return (
-              <a
-                href={item.a}
+              <Link
+                to={item.link}
                 className="text-[13px] text-white font-serif font-normal hover:text-yellow-400 underline"
               >
                 {item.category}
                 {"."}
-              </a>
+              </Link>
             );
           })}
         </div>
