@@ -63,12 +63,18 @@ function index() {
             {cart.length}
           </span>
         </div>
-        <button className="text-sm font-semibold p-2 px-4 rounded-full underline">
+        <Link
+          to="/login"
+          className="text-sm font-semibold p-2 px-4 rounded-full underline"
+        >
           Login
-        </button>
-        <button className="bg-yellow-500 hover:bg-yellow-600 rounded-full text-sm text-white font-semibold p-2 px-4 ">
+        </Link>
+        <Link
+          to="/register"
+          className="bg-yellow-500 hover:bg-yellow-600 rounded-full text-sm text-white font-semibold p-2 px-4 "
+        >
           Signup
-        </button>
+        </Link>
       </div>
     </div>
   );
