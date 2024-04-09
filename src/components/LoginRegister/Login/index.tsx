@@ -62,8 +62,9 @@ function Login() {
         <Button
           styleClass="flex justify-center items-center pl-4 pr-4 h-10 rounded-[5px] w-full bg-yellow-500 text-md font-medium text-black"
           onClick={() => {}}
-          buttonText="Login"
-        />
+        >
+          Login
+        </Button>
       </form>
     </div>
   );

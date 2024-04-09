@@ -1,9 +1,15 @@
 import React from "react";
 
-function Button({ styleClass, buttonText, onClick, ...props }) {
+interface ButtonType {
+  styleClass: string;
+  children: React.ReactNode;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
+}
+
+function Button({ styleClass, children, onClick }) {
   return (
     <button className={styleClass} onClick={onClick}>
-      {buttonText}
+      {children}
     </button>
   );
 }

@@ -1,9 +1,9 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useState } from "react";
 import ProductCard from "../ProductCard";
 import { useSelector, useDispatch } from "react-redux";
 import { clearFavorite } from "../../../redux/favoriteSlice";
+
+import Button from "../../../common/Button";
 
 function index() {
   const favorite = useSelector((state) => state.favorite.favoriteItems);
@@ -17,14 +17,14 @@ function index() {
     <div className="w-full px-8 py-8 justify-center items-dtart flex-row">
       {favorite.length > 0 ? (
         <div className="flex flex-wrap justify-start flex-row gap-4">
-          <p
-            className=" rounded-full text-sm font-semibold p-2 px-4 cursor-pointer bg-opacity-75 hover:underline "
+          <Button
+            styleClass="rounded-full text-sm font-semibold p-2 px-4  cursor-pointer bg-opacity-75 hover:underline "
             onClick={() => {
               dispatch(clearFavorite());
             }}
           >
             clear Favorites
-          </p>
+          </Button>
         </div>
       ) : null}
 
