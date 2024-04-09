@@ -6,12 +6,12 @@ import { Link } from "react-router-dom";
 function index() {
   const [currentTab, setCurrentTab] = useState("LOGIN");
   return (
-    <div className="flex w-full h-full justify-center items-start p-4">
-      <div className="flex flex-row min-w-[850px] shadow-lg bg-blue-[#fafafa] justify-center items-center h-full max-h-[600px] rounded-2xl p-2">
+    <div className="flex w-full h-full justify-center items-start">
+      <div className="flex flex-row min-w-[850px] shadow-lg bg-blue-[#fafafa] justify-center items-center h-full max-h-[600px] rounded-2xl p-0">
         <div className="flex h-full w-[50%] rounded-r-xl">
           {currentTab === "LOGIN" ? <Login /> : <Register />}
         </div>
-        <div className="w-full h-full w-[450px] relative">
+        <div className="w-full h-full !w-[50%] relative">
           <Link to={"/"} className="absolute top-4 left-4 z-[1]">
             <div className="flex justify-center items-center cursor-pointer">
               <LogoIcon />
