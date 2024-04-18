@@ -5,6 +5,7 @@ interface ButtonType {
   children: React.ReactNode;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
   icon?: React.ReactNode;
+  // types
 }
 
 function Button({ styleClass, children, onClick }) {
