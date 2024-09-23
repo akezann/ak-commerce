@@ -6,9 +6,11 @@ import SubNavbar from "./components/Navbar/SubNavbar";
 import ProductsContainer from "./components/Products/ProductsContainer";
 import Favorites from "./components/Products/Favorites";
 import Home from "./components/Home";
-import { useDispatch } from "react-redux";
-import { addData } from "./redux/data";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { addData, setLoading } from "./redux/data";
+import { selectors } from "./redux/data";
+
+import { fetchData } from "./utils/fakestoreService";
 
 //styles
 import "./App.css";
@@ -16,27 +18,27 @@ import LoginRegister from "./components/LoginRegister";
 
 const App = () => {
   const dispatch = useDispatch();
-  const [data, setData] = useState([]);
+  const products = useSelector(selectors.products);
 
   useEffect(() => {
-    const fetchData = async () => {
+    dispatch(setLoading(true));
+
+    const getProducts = async () => {
       try {
-        const response = await axios.get("https://fakestoreapi.com/products");
-        setData(response.data);
+        const response = await fetchData("/products");
+        dispatch(addData(response));
+        dispatch(setLoading(false));
       } catch (error) {
         console.error(error);
+        dispatch(setLoading(false));
       }
     };
-    fetchData();
+    getProducts();
   }, []);
 
-  useEffect(() => {
-    dispatch(addData(data));
-  }, [data]);
-
   return (
-    <div className="relative flex justify-center items-center">
-      <div className="w-full max-w-[1324px] h-screen border-x">
+    <div className="relative flex justify-center items-center overflow-hidden bg-gray-50">
+      <div className="w-full max-w-[1324px] h-screen ">
         <Router>
           <SubNavbar />
           <Navbar />
@@ -44,7 +46,23 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route
               path="/products"
-              element={<ProductsContainer products={data} />}
+              element={<ProductsContainer products={products} />}
+            />
+            <Route
+              path="/products/mens"
+              element={<ProductsContainer products={products} />}
+            />
+            <Route
+              path="/products/womens"
+              element={<ProductsContainer products={products} />}
+            />
+            <Route
+              path="/products/jewelery"
+              element={<ProductsContainer products={products} />}
+            />
+            <Route
+              path="/products/electronics"
+              element={<ProductsContainer products={products} />}
             />
             <Route path="/favorites" element={<Favorites />} />
             <Route path="/login" element={<LoginRegister />} />

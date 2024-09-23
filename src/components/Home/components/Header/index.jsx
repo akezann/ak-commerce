@@ -1,5 +1,10 @@
+import { useEffect } from "react";
 import bgImage from "../../../../assets/bgHeader.jpg";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addData, setLoading } from "../../../../redux/data";
+
+import { fetchData } from "../../../../utils/fakestoreService";
 
 const links = [
   {
@@ -21,6 +26,22 @@ const links = [
 ];
 
 function index() {
+  const dispatch = useDispatch();
+
+  const getProducts = async (category) => {
+    dispatch(setLoading(true));
+    try {
+      const response = await fetchData(
+        category ? `/products/category/${category}` : "/products"
+      );
+      dispatch(addData(response));
+      dispatch(setLoading(false));
+    } catch (error) {
+      console.error(error);
+      dispatch(setLoading(false));
+    }
+  };
+
   return (
     <div className="w-full h-full relative ">
       <img
@@ -38,7 +59,12 @@ function index() {
           </p>
         </div>
         <Link to={"/products"}>
-          <span className="w-48 text-white text-2xl font-serif px-6 py-2 bg-yellow-500 hover:bg-yellow-600 flex  justify-center items-center gap-4 rounded-full">
+          <span
+            onClick={() => {
+              getProducts();
+            }}
+            className="w-48 text-white text-2xl font-serif px-6 py-2 bg-yellow-500 hover:bg-yellow-600 flex  justify-center items-center gap-4 rounded-full"
+          >
             Acheter <i class="fas fa-arrow-right text-base"></i>
           </span>
         </Link>
@@ -48,6 +74,9 @@ function index() {
               <Link
                 to={item.link}
                 className="text-[13px] text-white font-serif font-normal hover:text-yellow-400 underline"
+                onClick={() => {
+                  getProducts(item.category);
+                }}
               >
                 {item.category}
                 {"."}

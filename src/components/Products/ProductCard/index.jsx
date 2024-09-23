@@ -97,7 +97,7 @@ function ProductCard({ data }) {
       {showModal ? (
         <Modal showModal={showModal} handleClickOutside={handleClickOutside}>
           <div
-            className="bg-white min-w-[100%] h-screen relative lg:min-w-[1000px] lg:h-[800px] rounded-lg"
+            className="min-w-[100%] h-full relative lg:min-w-[1000px] rounded-lg"
             ref={modalContentRef}
           >
             <ProductDetails data={data} setShowModal={setShowModal} />

@@ -1,20 +1,34 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    data: [],
+  data: [],
+  loading: false,
 };
 
 const dataSlice = createSlice({
-    name: "productdata",
-    initialState,
-    reducers: {
-        addData: (state, action) => {
-            state.data = action.payload
-        },
+  name: "productdata",
+  initialState,
+  reducers: {
+    addData: (state, action) => {
+      state.data = action.payload;
     },
+    setLoading: (state, action) => {
+      console.log(1337, action.payload);
+      state.loading = action.payload;
+    },
+  },
 });
 
-export const { addData } =
-    dataSlice.actions;
+const selectProducts = (state) => state.productdata || initialState;
+
+const products = createSelector([selectProducts], (substate) => substate.data);
+const loading = createSelector(
+  [selectProducts],
+  (substate) => substate.loading
+);
+
+export const selectors = { products, loading };
+
+export const { addData, setLoading } = dataSlice.actions;
 
 export default dataSlice.reducer;

@@ -13,7 +13,6 @@ function Login() {
     else setPassword(e.target.value);
   };
 
-  console.log(password);
   return (
     <div className="flex flex-col  w-full">
       <h1 className=" flex justify-start m-0 w-full  text-2xl font-bold p-[32px] pb-0">

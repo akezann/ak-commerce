@@ -7,7 +7,7 @@ const Modal = ({ children, showModal, handleClickOutside }) => {
       {showModal ? (
         <div
           onClick={handleClickOutside}
-          className="bg-black bg-opacity-25 w-full h-screen fixed top-0 left-0  z-10 flex justify-center items-center"
+          className="bg-black bg-opacity-25 w-full h-screen fixed top-0 left-0 z-10 flex justify-center items-center py-10"
         >
           {children}
         </div>

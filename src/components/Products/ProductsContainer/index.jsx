@@ -6,17 +6,12 @@ import Filters from "../Filters";
 
 import { useSelector } from "react-redux";
 
+import { selectors } from "../../../redux/data";
+
 function index() {
   const productdata = useSelector((state) => state.productdata.data);
-  const [data, setData] = useState();
+  const loading = useSelector(selectors.loading);
   const searchValueReducer = useSelector((state) => state.filter.searchValue);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setData(productdata);
-    }, 800);
-  }, [productdata]);
-
 
   return (
     <div className="flex flex-wrap justify-start items-start py-8 h-full justify-start items-dtart flex-row overflow-x-hidden">
@@ -29,17 +24,15 @@ function index() {
         <div className="hidden sm:flex">
           <Filters />
         </div>
-        <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-1.5 px-2">
-          {data ? (
-            data
+        <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-1.5 px-2 pb-28 overflow-x-auto">
+          {!loading ? (
+            productdata
               .filter((item) => {
                 if (searchValueReducer !== "")
                   return item.title.includes(searchValueReducer);
                 return item;
               })
               .map((item, key) => {
-                console.log(item.category);
-
                 return <ProductCard key={key} data={item} />;
               })
           ) : (
