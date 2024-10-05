@@ -47,7 +47,7 @@ function index() {
       <img
         src={bgImage}
         alt="Your Image"
-        class="w-full h-[356px] sm:h-[436px] object-cover brightness-50"
+        className="w-full h-[356px] sm:h-[436px] object-cover brightness-50"
       />
       <div className="flex flex-col gap-4 absolute bottom-[50px] sm:bottom-[130px] left-4 sm:left-20  z-10">
         <div>
@@ -65,7 +65,7 @@ function index() {
             }}
             className="w-48 text-white text-2xl font-serif px-6 py-2 bg-yellow-500 hover:bg-yellow-600 flex  justify-center items-center gap-4 rounded-full"
           >
-            Acheter <i class="fas fa-arrow-right text-base"></i>
+            Acheter <i className="fas fa-arrow-right text-base"></i>
           </span>
         </Link>
         <div className="flex justify-start items-start gap-2">

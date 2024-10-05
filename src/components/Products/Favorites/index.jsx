@@ -50,7 +50,7 @@ function index() {
         <div className="h-full w-full flex justify-center items-center">
           <p className="text-xl font-400">
             There is no favorites. !<i class="fa fa-heart "></i>
-            <i class="fa fa-heart rotate-180"></i>!
+            <i className="fa fa-heart rotate-180"></i>!
           </p>
         </div>
       )}

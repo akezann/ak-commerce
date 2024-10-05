@@ -11,7 +11,7 @@ function SubNavbar() {
       <ul className="flex justify-center items-center gap sm:gap-4">
         <Link to={'/favorites'}>
           <li className="test-[14px] flex justify-center items-center text-sm gap-2 mr-2 cursor-pointer">
-            <i class="fa fa-heart"></i>
+            <i className="fa fa-heart"></i>
             <span className="hover:underline">
               My Favorites {`(${favorite.length})`}
             </span>

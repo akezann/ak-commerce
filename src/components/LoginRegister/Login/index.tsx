@@ -3,15 +3,43 @@ import React, { useState } from "react";
 import Label from "./../../../common/Label";
 import Button from "../../../common/Button";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("akezanna");
 
   const handleChange = (e) => {
     if (e.target.name === "email") setEmail(e.target.value);
     else setPassword(e.target.value);
   };
+
+  const registerUser = async (username, email, password) => {
+    try {
+      const res = await axios.post("http://localhost:8080/register", {
+        username: username,
+        email: email,
+        password: password,
+      });
+      console.log("RES : ", res);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const loginUser = async (username, password) => {
+    try {
+      const res = await axios.post("http://localhost:8080/authenticate", {
+        username: username,
+        password: password,
+      });
+      console.log("RES : ", res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  console.log(password);
 
   return (
     <div className="flex flex-col  w-full">
@@ -21,7 +49,13 @@ function Login() {
       <p className=" flex justify-start m-0 w-full text-yellow-500 underline text-[13px] m-0 pl-[32px]">
         Enter Your Credentials
       </p>
-      <form className="flex flex-col p-[32px] gap-4  w-full max-w-[375px] h-full">
+      <form
+        className="flex flex-col p-[32px] gap-4  w-full max-w-[375px] h-full"
+        onSubmit={(e) => {
+          e.preventDefault();
+          registerUser(username, email, password);
+        }}
+      >
         <div className="flex flex-col gap-1">
           <Label
             text={"email :"}
@@ -57,13 +91,15 @@ function Login() {
           >
             Forget password?
           </Link>
+          <Button
+            styleClass="flex justify-center items-center pl-4 pr-4 h-10 rounded-[5px] w-full bg-yellow-500 text-md font-medium text-black"
+            onClick={() => {
+              loginUser(username, password);
+            }}
+          >
+            Login
+          </Button>
         </div>
-        <Button
-          styleClass="flex justify-center items-center pl-4 pr-4 h-10 rounded-[5px] w-full bg-yellow-500 text-md font-medium text-black"
-          onClick={() => {}}
-        >
-          Login
-        </Button>
       </form>
     </div>
   );
