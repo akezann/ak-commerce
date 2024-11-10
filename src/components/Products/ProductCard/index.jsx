@@ -36,10 +36,10 @@ function ProductCard({ data }) {
     }
   };
 
-  useEffect(() => {
-    if (showModal) document.body.style.overflow = "hidden";
-    else document.body.style.overflow = "unset";
-  }, [showModal]);
+  // useEffect(() => {
+  //   if (showModal) document.body.style.overflow = "hidden";
+  //   else document.body.style.overflow = "unset";
+  // }, [showModal]);
 
   return (
     <div

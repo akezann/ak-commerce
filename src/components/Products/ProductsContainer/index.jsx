@@ -20,7 +20,7 @@ function index() {
           <i className="fas fa-filter text-[16px]"></i>filter
         </span>
       </div>
-      <div className="flex gap-2">
+      <div className="flex gap-2 px-2">
         <div className="hidden sm:flex">
           <Filters />
         </div>

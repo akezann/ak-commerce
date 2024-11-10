@@ -8,11 +8,15 @@ import axios from "axios";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("akezanna");
+  const [username, setUsername] = useState("akezanna"); // Default username (can be updated via input)
+
+  const [currentTab, setCurrentTab] = useState("LOGIN");
 
   const handleChange = (e) => {
-    if (e.target.name === "email") setEmail(e.target.value);
-    else setPassword(e.target.value);
+    const { name, value } = e.target;
+    if (name === "email") setEmail(value);
+    else if (name === "password") setPassword(value);
+    else if (name === "username") setUsername(value);
   };
 
   const registerUser = async (username, email, password) => {
@@ -30,16 +34,33 @@ function Login() {
 
   const loginUser = async (username, password) => {
     try {
-      const res = await axios.post("http://localhost:8080/authenticate", {
-        username: username,
-        password: password,
-      });
-      console.log("RES : ", res.data);
+      console.log(1337, username, password);
+
+      const res = await axios.post(
+        "http://localhost:8080/authenticate",
+        { username, password },
+        {
+          withCredentials: true,
+        }
+      );
+
+      console.log("RES", res.data);
     } catch (err) {
       console.log(err);
     }
   };
-  console.log(password);
+
+  const getUsers = async () => {
+    try {
+      console.log(1337, username, password);
+      const res = await axios.get("http://localhost:8080/users", {
+        withCredentials: true,
+      });
+      console.log("USERs : ", res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className="flex flex-col  w-full">
@@ -53,27 +74,66 @@ function Login() {
         className="flex flex-col p-[32px] gap-4  w-full max-w-[375px] h-full"
         onSubmit={(e) => {
           e.preventDefault();
-          registerUser(username, email, password);
+          if (currentTab === "REGISTER") {
+            registerUser(username, email, password);
+          } else {
+            loginUser(username, password);
+          }
         }}
       >
-        <div className="flex flex-col gap-1">
-          <Label
-            text={"email :"}
-            styleClass="text-md font-[500]"
-            htmlFor="email"
-          />
-          <Input
-            type="email"
-            name="email"
-            styleClass="h-10 text-md pl-2 pr-2 w-full border-1 border-gray-200 rounded-[6px] border outline-none shadow-none placeholder-gray-400"
-            placeholder="email"
-            onChange={handleChange}
-            value={email}
-          />
+        <div className="flex justify-center items-center gap-4 underline">
+          <span
+            className="cursor-pointer"
+            onClick={() => {
+              setCurrentTab("LOGIN");
+            }}
+          >
+            Login
+          </span>
+          <span
+            className="cursor-pointer"
+            onClick={() => {
+              setCurrentTab("REGISTER");
+            }}
+          >
+            Register
+          </span>
         </div>
         <div className="flex flex-col gap-1">
           <Label
-            text={"password :"}
+            text={"Username:"}
+            styleClass="text-md font-[500]"
+            htmlFor="username"
+          />
+          <Input
+            type="text"
+            name="username"
+            styleClass="h-10 text-md pl-2 pr-2 w-full border-1 border-gray-200 rounded-[6px] border outline-none shadow-none placeholder-gray-400"
+            placeholder="username"
+            onChange={handleChange}
+            value={username}
+          />
+        </div>
+        {currentTab === "LOGIN" ? null : (
+          <div className="flex flex-col gap-1">
+            <Label
+              text={"Email:"}
+              styleClass="text-md font-[500]"
+              htmlFor="email"
+            />
+            <Input
+              type="email"
+              name="email"
+              styleClass="h-10 text-md pl-2 pr-2 w-full border-1 border-gray-200 rounded-[6px] border outline-none shadow-none placeholder-gray-400"
+              placeholder="email"
+              onChange={handleChange}
+              value={email}
+            />
+          </div>
+        )}
+        <div className="flex flex-col gap-1">
+          <Label
+            text={"Password:"}
             styleClass="text-md font-[500]"
             htmlFor="password"
           />
@@ -85,22 +145,22 @@ function Login() {
             onChange={handleChange}
             value={password}
           />
-          <Link
-            to="/"
-            className=" flex justify-end cursor-pointer m-0 w-full text-black-400 underline text-[13px] m-0 pl-[32px]"
-          >
-            Forget password?
-          </Link>
-          <Button
-            styleClass="flex justify-center items-center pl-4 pr-4 h-10 rounded-[5px] w-full bg-yellow-500 text-md font-medium text-black"
-            onClick={() => {
-              loginUser(username, password);
-            }}
-          >
-            Login
-          </Button>
         </div>
+        <button
+          className="flex justify-center items-center pl-4 pr-4 h-10 rounded-[5px] w-full bg-yellow-500 text-md font-medium text-black"
+          type="submit"
+        >
+          {currentTab === "LOGIN" ? "Login" : "Register"}
+        </button>
       </form>
+
+      <button
+        onClick={() => {
+          getUsers();
+        }}
+      >
+        get users
+      </button>
     </div>
   );
 }

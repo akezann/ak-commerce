@@ -1,9 +1,7 @@
-// api.js
 import axios from "axios";
 
-// Create an axios instance with a baseURL
 const api = axios.create({
-  baseURL: "https://fakestoreapi.com", // Fakestore API base URL
+  baseURL: "https://fakestoreapi.com",
 });
 
 export default api;

@@ -17,6 +17,9 @@ function index() {
   return (
     <div className="w-[200px] border-1 border-black bg-red-100">
       <p>filters</p>
+      <div>
+        
+      </div>
     </div>
   );
 }

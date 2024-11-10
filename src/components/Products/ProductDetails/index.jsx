@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { addToFavorite } from "../../../redux/favoriteSlice";
 import Button from "../../../common/Button";
 import RateStar from "../../../assets/RateStar";
+import { addToCart } from "../../../redux/cartSlice";
 
 function index({ data, setShowModal }) {
   const favorite = useSelector((state) => state.favorite.favoriteItems);
@@ -15,6 +16,12 @@ function index({ data, setShowModal }) {
   const handleAddFav = (item) => {
     dispatch(addToFavorite(item));
   };
+
+  const handleAddToCart = (item) => {
+    dispatch(addToCart(item));
+  };
+
+  console.log(cart);
 
   return (
     <div className="flex flex-col w-full h-full relative rounded-lg bg-gray-50">
@@ -63,7 +70,9 @@ function index({ data, setShowModal }) {
         </div>
         <Button
           styleClass="flex justify-center items-center px-6 h-10 max-w-[180px] rounded-[6px] bg-yellow-500 text-md font-semibold text-black absolute bottom-8 right-8"
-          onClick={() => {}}
+          onClick={() => {
+            handleAddToCart(data);
+          }}
         >
           Add To Cart
         </Button>

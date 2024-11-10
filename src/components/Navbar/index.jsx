@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 
 // components
 import Input from "./../../common/Input";
+import ShopCart from "../Products/ShopCart";
 // assets
 import LogoIcon from "../../assets/LogoIcon";
 import SearchIcon from "../../assets/SearchIcon";
 import CartIcon from "../../assets/CartIcon";
-
+import Modal from "../../common/Modal";
 // reducers
 import { useSelector, useDispatch } from "react-redux";
 import { setSearchValue } from "../../redux/filter";
@@ -23,9 +24,33 @@ function index() {
     setSearchVal(newText);
     dispatch(setSearchValue(newText));
   };
+  const [showModal, setShowModal] = useState(false);
+  const toggleModal = () => {
+    setShowModal(true);
+  };
+
+  const modalContentRef = useRef();
+
+  const handleClickOutside = (event) => {
+    if (
+      modalContentRef.current &&
+      !modalContentRef.current.contains(event.target)
+    ) {
+      setShowModal(false);
+    }
+  };
 
   return (
     <div className="flex justify-between items-start gap-4 w-full flex-col bg-white p-4 px-6 lg:px-[80px] sticky top-0 left-0 z-10 sm:flex-row sm:items-center sm:gap-0">
+      <Modal showModal={showModal} handleClickOutside={handleClickOutside}>
+        <div
+          className="min-w-[100%] h-full relative lg:min-w-[1000px] rounded-lg"
+          ref={modalContentRef}
+        >
+          <ShopCart />
+        </div>
+      </Modal>
+
       <Link to={"/"}>
         <div className="flex justify-center items-center cursor-pointer">
           <LogoIcon />
@@ -57,7 +82,12 @@ function index() {
         </form>
       </div>
       <div className="flex justify-center items-cente gap-4">
-        <div className="flex justify-center items-center text-sm font-medium relative cursor-pointer">
+        <div
+          className="flex justify-center items-center text-sm font-medium relative cursor-pointer"
+          onClick={() => {
+            toggleModal();
+          }}
+        >
           Chart <CartIcon />
           <span className="flex justify-center items-center text-sm  w-4 h-4 rounded-full absolute bg-yellow-300 top-[-5px] right-[-15px]">
             {cart.length}

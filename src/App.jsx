@@ -38,7 +38,7 @@ const App = () => {
 
   return (
     <div className="relative flex justify-center items-center overflow-hidden bg-gray-50">
-      <div className="w-full max-w-[1324px] h-screen ">
+      <div className="w-full 2xl:max-w-[1324px] h-screen ">
         <Router>
           <SubNavbar />
           <Navbar />

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import bgImage from "../../../../assets/bgHeader.jpg";
+// import bgImage from "../../../../assets/bgHeader.jpg";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addData, setLoading } from "../../../../redux/data";
@@ -45,9 +45,12 @@ function index() {
   return (
     <div className="w-full h-full relative ">
       <img
-        src={bgImage}
+        src={
+          // "https://images.pexels.com/photos/7545220/pexels-photo-7545220.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+          "https://images.pexels.com/photos/11952303/pexels-photo-11952303.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+        }
         alt="Your Image"
-        className="w-full h-[356px] sm:h-[436px] object-cover brightness-50"
+        className="w-full h-[412px] sm:h-[586px] object-cover brightness-50"
       />
       <div className="flex flex-col gap-4 absolute bottom-[50px] sm:bottom-[130px] left-4 sm:left-20  z-10">
         <div>
